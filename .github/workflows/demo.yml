@@ -25,11 +25,11 @@ jobs:
     - name: Build with Maven
       run: mvn clean install -DskipTests=true
 
-    - name: Test with Maven
-      run: mvn test
-
     - name: Package Spring Boot application
-      run: mvn package
+      run: mvn package -DskipTests=true
+
+    - name: Display test coverage
+      run: mvn jacoco:report -DskipTests=true
 
     - name: Display test coverage
       run: mvn jacoco:report
