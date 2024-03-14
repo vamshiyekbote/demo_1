@@ -44,7 +44,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                
+                <configuration>
+                    <mainClass>BACONAPP</mainClass> <!-- Specify your main class here -->
+                </configuration>
             </plugin>
         </plugins>
     </build>
