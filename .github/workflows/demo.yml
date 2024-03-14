@@ -1,6 +1,12 @@
-name: Java Application CI
+name: Java Spring Boot CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -14,9 +20,15 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adopt'    
+
     - name: Build with Maven
-      run: mvn clean install -B
-    
-    - name: Run Java Application
-      run: java -jar target/maven-wrapper.jar
+      run: mvn clean install -DskipTests=true
+
+    - name: Test with Maven
+      run: mvn test
+
+    - name: Package Spring Boot application
+      run: mvn package
+
+    - name: Display test coverage
+      run: mvn jacoco:report
